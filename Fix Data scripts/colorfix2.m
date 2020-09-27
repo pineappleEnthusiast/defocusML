@@ -4,7 +4,8 @@ pathtestprime = 'C:\Users\kanga\Documents\MATLAB\project\defocusML\Data\Fixed Da
 testfiles = dir (strcat(pathtest,'/*.jpg'));
 
 for i=1:278 
-    a=imread(strcat(pathtest,'/',testfiles(i).name));  
+    a=imread(strcat(pathtest,'/',int2str(i),'.jpg'));  
+    %imwrite(a, strcat(pathtestprime,'/', int2str(i),'.jpg'), 'jpg');
     a = rgb2gray(a);
     a = imcomplement(a);
     a = histeq(a);
@@ -22,7 +23,7 @@ for i=1:278
      a2 = a - smoothBKG;
      %imshow(a2)
      a3 = imcomplement(a2);
-     imhist(a3)
+     %imhist(a3)
      a3 = imadjust(a3, [30/256 220/256], [70/256 150/256]);
      a4 = imsharpen(a3);
      imwrite(a4, strcat(pathtestprime,'/', int2str(i),'.jpg'), 'jpg'); 
